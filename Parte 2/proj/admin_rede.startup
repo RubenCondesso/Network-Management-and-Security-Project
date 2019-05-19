@@ -1,0 +1,14 @@
+dpkg -i openresolv_3.5.2-1_all.deb
+
+ip addr add dev eth0 10.0.0.34/30
+ip link set dev eth0 up
+
+ip route add default via 10.0.0.33
+
+chmod 700 /root
+chmod 700 /root/.ssh
+chmod 700 /root/.ssh/id_rsa
+chmod 700 /root/.ssh/id_rsa.pub
+chmod 700 /root/.ssh/known_hosts
+
+/etc/init.d/ssh start

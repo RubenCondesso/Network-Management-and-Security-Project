@@ -1,0 +1,19 @@
+$TTL   60000
+@               IN      SOA     dnsserver.gsr.    root.dnsserver.gsr. (
+                        2006031201 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+@                   IN      NS      dnsserver.gsr.
+dnsserver           IN      A       10.0.0.30
+
+contatudo           IN      NS      dnssec.contatudo.gsr.
+dnssec.contatudo    IN      A       10.0.0.135
+
+contatudo           IN      NS      dnsprim.contatudo.gsr.
+dnsprim.contatudo   IN      A       10.0.0.134
+
+bomcliente          IN      NS      dnsbcl.bomcliente.gsr.
+dnsbcl.bomcliente   IN      A       10.0.0.3

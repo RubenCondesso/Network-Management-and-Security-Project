@@ -1,0 +1,45 @@
+$TTL   60000
+@               IN      SOA     dnsserver.gsr.    root.dnsserver.gsr. (
+                        2006031201 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+@                   IN      NS      dnsserver.gsr.
+
+
+30		  PTR		dnsserver.gsr. 		 
+22        PTR       routerexterno.gsr.
+17        PTR       sede4.gsr.
+18		  PTR		isp0.gsr.
+29		  PTR		isp2.gsr.
+21		  PTR		isp1.gsr.
+
+0/29                   IN      NS      dnsbcl.bomcliente.gsr.
+
+1         CNAME		1.0/29.0.0.10.IN-ADDR.ARPA.
+3         CNAME		3.0/29.0.0.10.IN-ADDR.ARPA.		
+4         CNAME		4.0/29.0.0.10.IN-ADDR.ARPA.		 
+
+128/26                   IN      NS      dnssec.contatudo.gsr.
+128/26                   IN      NS      dnsprim.contatudo.gsr.
+
+134         CNAME		134.128/26.0.0.10.IN-ADDR.ARPA.
+135         CNAME		135.128/26.0.0.10.IN-ADDR.ARPA.		
+136         CNAME		136.128/26.0.0.10.IN-ADDR.ARPA.	
+
+129         CNAME		129.128/26.0.0.10.IN-ADDR.ARPA.
+168         CNAME		168.128/26.0.0.10.IN-ADDR.ARPA.		
+145         CNAME		145.128/26.0.0.10.IN-ADDR.ARPA.
+
+
+165         CNAME		165.128/26.0.0.10.IN-ADDR.ARPA.
+161         CNAME		161.128/26.0.0.10.IN-ADDR.ARPA.		
+162         CNAME		162.128/26.0.0.10.IN-ADDR.ARPA.	
+
+166         CNAME		166.128/26.0.0.10.IN-ADDR.ARPA.
+
+150         CNAME		150.128/26.0.0.10.IN-ADDR.ARPA.		
+151         CNAME		151.128/26.0.0.10.IN-ADDR.ARPA.
+152         CNAME		152.128/26.0.0.10.IN-ADDR.ARPA.

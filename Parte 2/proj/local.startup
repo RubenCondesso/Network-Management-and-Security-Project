@@ -1,0 +1,26 @@
+#Rota estatica para o MRTG
+sudo route add -net 192.168.0.0 netmask 255.255.255.248 gw 192.168.100.1 dev nk_tap_ruben
+
+
+#Descomentar esta linha no ficheiro /etc/sysct1.conf
+net.ipv4.ip_forward=1
+
+#Adicionar ao ficheiro /etc/rc.local
+
+echo 1 > /proc/sys/net/ipv4/ip_forwarding
+iptables --tables nat --append POSTROUTING --out-interface wlo1 -j MASQUERADE
+ipatables --append FORWARD --in-interfaces nk_tap_ruben -j ACCEPT
+
+#Adiciona as seguintes rotas estaticas para o NAT
+sudo route add -net 10.0.0.128 netmask 255.255.255.192 gw 192.168.100.1 dev nk_tap_ruben
+
+sudo route add -net 10.0.2.64 netmask 255.255.255.192 gw 192.168.100.1 dev nk_tap_ruben
+
+sudo route add -net 10.0.0.0 netmask 255.255.255.240 gw 192.168.100.1 dev nk_tap_ruben
+
+#tunneisss ssh
+
+
+ssh -L 8080:localhost:1600 admin@10.0.0.136 -Nf #no terminal do admin_rede
+ssh -L 1600:localhost:22 admin@192.168.0.5 -Nf #no terminal do proxy
+ssh admin@localhost -p 8080 #no termianl do admin_rede

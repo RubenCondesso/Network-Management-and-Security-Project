@@ -1,0 +1,31 @@
+#dependencias 
+
+
+
+admin_rede: router_internet dnsserver
+
+pc_externo: router_externo 
+
+server2_PR: switch_PR
+server1_PR: switch_PR
+
+pc2_escP_AD: router_sede router_escritorioP switchAD_escP
+pc1_escP_AD: router_sede router_escritorioP switchAD_escP
+
+pc2_escL_AD: router_sede router_escritorioL switchAD_escL
+pc1_escL_AD: router_sede router_escritorioL switchAD_escL
+
+pc2_escP: router_sede router_escritorioP
+pc1_escP: router_sede router_escritorioP
+
+pc2_escL: router_sede router_escritorioL
+pc1_escL: router_sede router_escritorioL
+
+pc3_AD: router_sede switch_AD
+pc2_AD: router_sede switch_AD
+pc1_AD: router_sede switch_AD
+
+proxy : dnsprim
+dnsbcl: dnsserver
+dnsprim : dnsserver dnssec
+dnssec: dnsserver

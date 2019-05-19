@@ -1,0 +1,15 @@
+ip addr add dev eth0 10.0.0.134/28
+ip link set dev eth0 up
+
+ip route add default via 10.0.0.129
+
+/etc/init.d/bind start
+/etc/init.d/inetd start
+/etc/init.d/apache2 start
+
+a2ensite clientes.conf
+a2ensite intranet.conf
+a2ensite www.conf
+
+/etc/init.d/apache2 restart
+/etc/init.d/snmpd start

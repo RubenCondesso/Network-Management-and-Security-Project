@@ -1,0 +1,59 @@
+$TTL   60000
+@               IN      SOA     dnssec.contatudo.gsr.    root.dnssec.contatudo.gsr. (
+                        2006031201 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+@                   IN      NS      dnssec.contatudo.gsr.
+@					IN		MX 5	mail.contatudo.gsr.
+
+dnssec              IN      A       10.0.0.135
+dnsprim				IN 		A		10.0.0.134
+proxy				IN		A		10.0.0.136
+
+imap				IN		A		10.0.0.135
+pop					IN		A		10.0.0.135
+mail				IN		A		10.0.0.135
+ftp					IN 		A 		192.168.0.6
+
+sede0				IN		A		10.0.0.129
+sede1				IN		A		192.168.0.1
+sede2				IN		A		10.0.0.145
+sede3				IN		A		10.0.0.165
+sede4				IN		A		10.0.0.17
+sede5				IN		A		10.0.0.161
+
+escL0				IN 		A		10.0.0.162
+escL1				IN 		A		10.0.2.65
+escL2				IN 		A		192.168.0.17
+
+escP0				IN		A		10.0.0.166
+escP1				IN		A		10.0.2.81
+escP2				IN		A		192.168.0.9
+
+server1				IN 		A		192.168.0.5
+server2				IN 		A		192.168.0.6
+
+pc1ad				IN 		A		10.0.0.150
+pc2ad 				IN 		A		10.0.0.151
+pc3ad 				IN 		A		10.0.0.152
+
+pc1adl 				IN 		A		192.168.0.19
+pc2adl 				IN 		A		192.168.0.20
+
+pc1l 				IN 		A		10.0.2.66
+pc2l 				IN 		A		10.0.2.67
+
+pc1adp 				IN 		A		192.168.0.12
+pc1adp 				IN 		A		192.168.0.13
+
+pc1p 				IN 		A		10.0.2.82
+pc2p 				IN 		A		10.0.2.83
+
+intranet			IN		A		10.0.0.134
+www					IN      A       10.0.0.134
+clientes			IN 		A		10.0.0.134
+
+

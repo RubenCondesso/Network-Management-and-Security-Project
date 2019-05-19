@@ -1,0 +1,26 @@
+$TTL   60000
+@               IN      SOA     dnssec.contatudo.gsr.    root.dnssec.contatudo.gsr. (
+                        2006031201 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+@                   IN      NS      dnssec.contatudo.gsr.
+@                   IN      NS      dnsprim.contatudo.gsr.
+
+1		  PTR 		 sede1.contatudo.gsr.
+
+5		  PTR 		 server1.contatudo.gsr.
+6		  PTR 		 server2.contatudo.gsr.
+
+9		  PTR 		 escP2.contatudo.gsr.
+
+12		  PTR 		 pc1adp.contatudo.gsr.
+13		  PTR 		 pc2adp.contatudo.gsr.
+
+17		  PTR 		 escL2.contatudo.gsr.
+
+19		  PTR 		 pc1adl.contatudo.gsr.
+20		  PTR 		 pc2adl.contatudo.gsr.
+

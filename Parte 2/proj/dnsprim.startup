@@ -1,0 +1,30 @@
+dpkg -i sudo_1.6.9p17-3_i386.deb
+
+ip addr add dev eth0 10.0.0.134/28
+ip link set dev eth0 up
+
+ip route add default via 10.0.0.129
+
+adduser --disabled-password --gecos "" admin
+echo 'admin:pass' | chpasswd
+
+chown -R admin /home/admin
+chmod 700 /home/admin
+chmod 700 /home/admin/.ssh
+chmod 700 /home/admin/.ssh/authorized_keys
+chmod 700 /root/.ssh/known_hosts
+
+/etc/init.d/bind start
+/etc/init.d/inetd start
+/etc/init.d/apache2 start
+
+a2ensite clientes.conf
+a2ensite intranet.conf
+a2ensite www.conf
+
+a2enmod ssl
+
+/etc/init.d/apache2 restart
+/etc/init.d/snmpd start
+
+/etc/init.d/ssh start

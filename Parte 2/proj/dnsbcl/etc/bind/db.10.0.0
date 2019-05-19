@@ -1,0 +1,14 @@
+; reverse lookup database 
+$TTL   60000
+@               IN      SOA     dnsbcl.bomcliente.gsr.    root.dnsbcl.bomcliente.gsr. (
+                        2006031201 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+@                   IN      NS      dnsbcl.bomcliente.gsr.
+
+1		  PTR 		 routerexterno.bomcliente.gsr.
+3         PTR        dnsbcl.bomcliente.gsr.
+4         PTR        pcexterno.bomcliente.gsr.

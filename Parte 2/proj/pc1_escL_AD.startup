@@ -1,0 +1,9 @@
+/etc/init.d/networking restart
+
+ip route add default via 192.168.0.17
+
+adduser --disabled-password --gecos "" lisboa
+echo 'lisboa:pass' | chpasswd
+
+adduser --disabled-password --gecos "" lisboa-contab1
+echo 'lisboa-contab1:pass' | chpasswd

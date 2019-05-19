@@ -1,0 +1,21 @@
+$TTL   60000
+@               IN      SOA     dnsbcl.bomcliente.gsr.    root.dnsbcl.bomcliente.gsr. (
+                        2006031201 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+@                   IN      NS      dnsbcl.bomcliente.gsr.
+@					IN		MX 5	mail.bomcliente.gsr.
+
+dnsbcl              IN      A       10.0.0.3
+
+pcexterno			IN		A		10.0.0.4
+routerexterno		IN		A		10.0.0.1
+www					IN		A		10.0.0.3
+
+imap				IN		A		10.0.0.3
+pop					IN		A		10.0.0.3
+mail				IN		A		10.0.0.3
+				

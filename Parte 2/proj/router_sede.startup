@@ -1,0 +1,80 @@
+ip addr add dev eth0 10.0.0.129/28
+ip link set dev eth0 up
+
+ip addr add dev eth1 192.168.0.1/29
+ip link set dev eth1 up
+
+ip addr add dev eth2 10.0.0.145/28
+ip link set dev eth2 up
+
+ip addr add dev eth3 10.0.0.165/30
+ip link set dev eth3 up
+
+ip addr add dev eth4 10.0.0.17/30
+ip link set dev eth4 up
+
+ip addr add dev eth5 10.0.0.161/30
+ip link set dev eth5 up
+
+ip route add 10.0.2.96/29 via 10.0.0.134
+ip route add default via 10.0.0.18
+
+/etc/init.d/zebra start
+/etc/init.d/dhcp3-server start
+/etc/init.d/snmpd start
+
+#allow do admin para servidor VPN
+iptables -A FORWARD -i eth4 -d 10.0.0.134 -p udp --dport 1194 -j ACCEPT
+
+#bloquear pacotes que entrem na rede com ip origem de dentro
+iptables -A FORWARD -i eth4 -s "10.0.2.64/27" -j DROP
+iptables -A FORWARD -i eth4 -s "10.0.0.128/26" -j DROP
+
+#permitir que saíam pacotes apenas de ips internos
+iptables -A FORWARD -o eth4 -s "10.0.2.64/26" -j ACCEPT
+iptables -A FORWARD -o eth4 -s "10.0.0.128/26" -j ACCEPT
+
+#proxy transparente
+iptables -t nat -A PREROUTING -s 10.0.0.128/26 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.136:3128
+iptables -t nat -A PREROUTING -s 10.0.2.64/28 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.136:3128
+iptables -t nat -A PREROUTING -s 10.0.2.80/28 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.136:3128
+
+#dns
+iptables -A FORWARD -i eth4 -d 10.0.0.135 -p udp --dport 53 -j ACCEPT
+iptables -A FORWARD -i eth4 -d 10.0.0.134 -p udp --dport 53 -j ACCEPT
+
+#http
+iptables -A FORWARD -d 10.0.0.134 -p tcp --dport 80 -s 10.0.0.128/26 -j DROP 
+iptables -A FORWARD -d 10.0.0.134 -p tcp --dport 80 -s 10.0.2.64/28 -j DROP 
+iptables -A FORWARD -d 10.0.0.134 -p tcp --dport 80 -s 10.0.2.80/28 -j DROP 
+iptables -A FORWARD -i eth4 -d 10.0.0.134 -p tcp --dport 80 -j ACCEPT
+
+#https
+iptables -A FORWARD -i eth4 -d 10.0.0.134 -p tcp --dport 443 -j ACCEPT
+
+#imap
+iptables -A FORWARD -i eth4 -d 10.0.0.135 -p tcp --dport 143 -j ACCEPT
+
+#smtp
+iptables -A FORWARD -i eth4 -d 10.0.0.135 -p tcp --dport 25 -j ACCEPT
+
+#ssh
+iptables -A FORWARD -i eth4 -d 10.0.0.134 -p tcp --dport 22 -j ACCEPT
+iptables -A FORWARD -i eth4 -d 10.0.0.135 -p tcp --dport 22 -j ACCEPT
+iptables -A FORWARD -i eth4 -d 10.0.0.136 -p tcp --dport 22 -j ACCEPT
+
+#acesso pc's visitantes
+iptables -A FORWARD -i eth4 -d 10.0.2.64/28 -j ACCEPT
+iptables -A FORWARD -i eth4 -d 10.0.2.80/28 -j ACCEPT
+
+#
+iptables -A FORWARD -i eth4 -s 10.0.0.34 -p udp --dport 1194 -j ACCEPT
+iptables -A FORWARD -o eth4 -d 10.0.0.34 -p udp --dport 1194 -j ACCEPT
+
+#acesso dos pc's publicos para fora 
+iptables -A FORWARD -i eth4 -d 10.0.0.144/28 -m state --state ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i eth4 -d 10.0.0.128/28 -m state --state ESTABLISHED -j ACCEPT
+
+#drop em tudo
+iptables -A FORWARD -i eth4 -j DROP
+iptables -A FORWARD -o eth4 -j DROP

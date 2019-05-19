@@ -1,0 +1,9 @@
+/etc/init.d/networking restart
+
+ip route add default via 192.168.0.9
+
+adduser --disabled-password --gecos "" porto
+echo 'porto:pass' | chpasswd
+
+adduser --disabled-password --gecos "" porto-contab2
+echo 'porto-contab2:pass' | chpasswd

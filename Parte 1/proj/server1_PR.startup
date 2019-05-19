@@ -1,0 +1,13 @@
+ip addr add dev eth0 192.168.0.5/29
+ip link set dev eth0 up
+ip route add default via 192.168.0.1
+
+/etc/init.d/snmpd start
+
+mrtg /root/mrtg.cfg --daemon
+
+env LANG=C /usr/bin/mrtg /root/mrtg.cfg --daemon
+
+indexmaker --output /var/www/index.html /root/mrtg.cfg
+
+/etc/init.d/apache2 start
